@@ -73,38 +73,48 @@ const scrollUp = () =>{
 window.addEventListener('scroll', scrollUp)
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-const sections = document.querySelectorAll('section[id]')
+const sections = document.querySelectorAll('section[id]');
     
-const scrollActive = () =>{
-  	const scrollDown = window.scrollY
+const scrollActive = () => {
+    const scrollDown = window.scrollY;
 
-	sections.forEach(current =>{
-		const sectionHeight = current.offsetHeight,
-			  sectionTop = current.offsetTop - 58,
-			  sectionId = current.getAttribute('id'),
-			  sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight,
+              sectionTop = current.offsetTop - 58,
+              sectionId = current.getAttribute('id'),
+              sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
 
-		if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
-			sectionsClass.classList.add('active-link')
-		}else{
-			sectionsClass.classList.remove('active-link')
-		}                                                    
-	})
-}
-window.addEventListener('scroll', scrollActive)
+        if (scrollDown >= sectionTop && scrollDown < sectionTop + sectionHeight) {
+            sectionsClass.classList.add('active-link');
+        } else {
+            sectionsClass.classList.remove('active-link');
+        }
+    });
+};
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY === 0) {
+        document.querySelector('.nav__menu a[href*="#home"]').classList.add('active-link');
+    } else {
+        document.querySelector('.nav__menu a[href*="#home"]').classList.remove('active-link');
+    }
+
+    scrollActive();
+});
+
 
 /*=============== SCROLL REVEAL ANIMATION =============== */
 const sr = ScrollReveal({
     origin: 'top',
     distance: '60px',
-    duration: 2500,
+    duration: 1000,
     delay: 400,
     reset: true
 })
 
 sr.reveal('.about__content',{origin: 'left'})
 sr.reveal('.aboutimg', {origin: 'right'})
-sr.reveal('.work__card', {origin: 'left', interval: 100})
+sr.reveal('.work__card', {origin: 'left', interval: 40})
 sr.reveal(`.home__data, .home__img, .home__social, .home__info, .footer__container, .experience__content`)
-sr.reveal(`.home__blob, skills__data, .skills__box, .services__card, .contact__card, .team__card`, {interval: 150})
-sr.reveal(`.contact__form`, {interval: 100})
+sr.reveal(`.home__blob, skills__data, .skills__box, .services__card, .contact__card, .team__card`, {interval: 40})
+sr.reveal(`.contact__form`, {interval: 40})

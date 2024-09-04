@@ -218,7 +218,7 @@ img {
     color: var(--first-color-light);
 }
 .active-link::after {
-    width: 100%;
+    width: 80%;
 }
 
 /*============ HOME ============= */
@@ -229,10 +229,10 @@ img {
 .home__img {
     width: 360px;
     justify-self: center;
-    /* mask-image: linear-gradient(
+    mask-image: linear-gradient(
         to bottom,
         hsla(var(--hue), 40%, 16%),60%,
-        transparent 100%); */
+        transparent 100%);
 }
 .home__name{
     font-size: var(--big-font-size);
@@ -262,6 +262,7 @@ img {
     justify-self: center;
     margin-top: 3rem;
     transition: .4s;
+    margin-bottom: .8rem;
 }
 .home__scroll:hover .home__scroll-text{
     color: var(--first-color-light);
@@ -278,6 +279,7 @@ img {
     place-items: center;
     font-size: 1.5rem;
     overflow: hidden;
+    
 }
 .home__scroll-text {
     font-weight: var(--font-semi-bold);
@@ -319,6 +321,7 @@ img {
 }
 /* ================ WORK ============== */
 .work{
+    grid: 100% / 1rem;
     background-color: var(--container-color);
 }
 .work__card{
@@ -676,12 +679,25 @@ footer {
 
 /* ================ MEDIA QUERIES =============== */
 /* For small devices */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
     .container {
         margin-inline: 1rem;
     }
     .skills__content{
         grid-template-columns: repeat(2,max-content);
+    }
+    .footer__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer__links {
+        flex-direction: column;
+        row-gap: 1.5rem;
+    }
+    .footer__title {
+        margin-bottom: 1.5rem;
     }
 }
 /* For medium devices */
@@ -741,7 +757,17 @@ footer {
     .team__container {
         grid-template-columns: repeat(2, 1fr);
     }
+    .footer__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+    .footer__links {
+        justify-content: flex-end;
+        column-gap: 2.5rem;
+    }
 }
+
 
 /* For large devices */
 @media screen and (min-width: 1150px) {
@@ -867,12 +893,13 @@ footer {
     .contact__message{
         bottom: 4rem;
     }
-    .footer__container{
+    .footer__container {
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
         justify-content: space-between;
-        padding-block: 3rem;
     }
-    .footer__links{
+    .footer__links {
+        justify-content: flex-end;
         column-gap: 4rem;
     }
     .scrollup{
